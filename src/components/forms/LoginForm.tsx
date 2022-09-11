@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import {
   Button,
   InputContainer,
@@ -9,23 +10,32 @@ import {
 import styles from "./index.module.scss";
 
 export const LoginForm = () => {
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = () => {};
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
-        <InputLabel htmlFor="email">Email</InputLabel>
+        <InputLabel htmlFor="email" {...register("email", { required: true })}>
+          Email
+        </InputLabel>
         <InputField type="email" id="email" />
       </InputContainer>
       <InputContainer className={styles.loginFormPassword}>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <InputField type="password" id="password" />
+        <InputField
+          type="password"
+          id="password"
+          {...register("password", { required: true })}
+        />
       </InputContainer>
       <Button className={styles.button}>Login</Button>
       <div className={styles.footerText}>
         <span>Don't have an account ? </span>
-        <Link to="/login">
+        <Link to="/register">
           <span>Register</span>
         </Link>
       </div>
