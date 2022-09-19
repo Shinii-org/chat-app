@@ -73,7 +73,12 @@ export const ConservationSidebarStyle = styled.aside`
   left: 0;
   border-right: 1px solid #5454543d;
   &&::-webkit-scrollbar {
-    display: none;
+    width: 10px;
+    height: 5px;
+    background-color: #000;
+  }
+  &&::-webkit-scrollbar-thumb {
+    background-color: #2d2d2d;
   }
 `;
 
